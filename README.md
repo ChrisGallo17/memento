@@ -1,2 +1,2 @@
-# DRIVE
-Digital library to store random ideas or quotes to refer back to for a bit of inspiration and purpose.
+# MEMENTO
+Digital library to store and remember random ideas or quotes to refer back to for a bit of inspiration and purpose.
