@@ -1,13 +1,27 @@
 import { Modal } from "react-bootstrap";
 import { Button, TextField, Stack } from "@mui/material";
 import { useState } from "react";
+import { db } from "../utils/firebase";
 
 export default function MyVerticallyCenteredModal(props) {
   const { quotes, setQuotes } = props;
   const [quoteValue, setQuoteValue] = useState()
   const [authorValue, setAuthorValue] = useState()
+
+  const generateRandomString = function(length=6){
+    return Math.random().toString(20).substr(2, length)
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    var UserID = 'Chris';
+    var QuoteKey = generateRandomString()
+
+    db.ref(UserID + "/quotes/" + QuoteKey ).set({
+      quote : quoteValue,
+      author : authorValue,
+    }).catch(alert);
+
     setQuotes([...quotes, {quote: quoteValue, author: authorValue}])
     setQuoteValue('')
     setAuthorValue('')
