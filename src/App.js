@@ -7,17 +7,15 @@ import NavBar from './components/Navbar'
 import { FaLightbulb } from 'react-icons/fa'
 import JotIdea from './components/JotIdea';
 import MyVerticallyCenteredModal from './components/IdeaModal';
-// import { LightbulbFill } from "react-bootstrap-icons";
 
 function App() {
-  const [showModal, setShowModal] = useState(false);
-
-  const [quotes, setQuotes] = useState([
-    "The quality of your life depends on the quality of your thoughts.",
-    "Don't just explain your philosophy, embody it"
-  ])
-
   const [modalShow, setModalShow] = useState(false);
+  const [quotes, setQuotes] = useState([
+    { quote: "The quality of your life depends on the quality of your thoughts.",
+      author: "Marcus Aurelius" },
+    { quote: "Don't just explain your philosophy, embody it",
+      author: "Epictetus"}
+  ]);
 
   return (
     <div className="App">
@@ -29,10 +27,6 @@ function App() {
       <Fab className='FixedButton' color="primary" onClick={() => setModalShow(true)}>
         <FaLightbulb style={{'height': '1.5rem'}} />
       </Fab>
-      <JotIdea 
-        show={showModal}
-        onHide={() => setShowModal(false)}
-      />
       <MyVerticallyCenteredModal
         show={modalShow}
         onHide={() => setModalShow(false)}
