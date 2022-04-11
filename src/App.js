@@ -7,6 +7,7 @@ import NavBar from './components/Navbar'
 import { FaLightbulb } from 'react-icons/fa'
 import JotIdea from './components/JotIdea';
 import MyVerticallyCenteredModal from './components/IdeaModal';
+import db from './utils/firebase'
 
 function App() {
   const [modalShow, setModalShow] = useState(false);
