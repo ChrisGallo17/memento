@@ -5,11 +5,12 @@ import { useState } from "react";
 export default function MyVerticallyCenteredModal(props) {
   const { quotes, setQuotes } = props;
   const [quoteValue, setQuoteValue] = useState()
+  const [authorValue, setAuthorValue] = useState()
   const handleSubmit = (e) => {
     e.preventDefault();
-    setQuotes([...quotes, quoteValue])
-    console.log(quoteValue, quotes)
+    setQuotes([...quotes, {quote: quoteValue, author: authorValue}])
     setQuoteValue('')
+    setAuthorValue('')
   };
   
   return (
@@ -35,8 +36,8 @@ export default function MyVerticallyCenteredModal(props) {
           type="text"
           placeholder='"Ill be back"'
           name="quoteInput"
-          value={quoteValue}
           label="Quote"
+          value={quoteValue}
           onChange={e => setQuoteValue(e.target.value)}
         />
         <TextField
@@ -44,6 +45,8 @@ export default function MyVerticallyCenteredModal(props) {
           id="Author"
           label="Author"
           placeholder="Marcus Aurelius"
+          value={authorValue}
+          onChange={e => setAuthorValue(e.target.value)}
         />
       </Modal.Body>
       <Modal.Footer>
