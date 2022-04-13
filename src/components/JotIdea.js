@@ -1,6 +1,5 @@
 import { Modal } from "react-bootstrap";
 import { TextField, Button, Stack } from "@mui/material";
-import { useForm } from "react-hook-form";
 import { useState } from "react";
 
 export default function JotIdea(props, quotes, setQuotes) {
