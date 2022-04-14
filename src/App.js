@@ -4,24 +4,27 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthState
 import './App.css';
 import Feed from './components/Feed';
 import NavBar from './components/Navbar'
+import Appbar from './components/AppBar'
 import { FaLightbulb } from 'react-icons/fa'
 import MyVerticallyCenteredModal from './components/IdeaModal';
-import { auth} from './utils/firebase'
+import { auth } from './utils/firebase'
 
 function App() {
   const [modalShow, setModalShow] = useState(false);
+  
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+
+  const [user, setUser] = useState({});
+
   const [quotes, setQuotes] = useState([
     { quote: "The quality of your life depends on the quality of your thoughts.",
       author: "Marcus Aurelius" },
     { quote: "Don't just explain your philosophy, embody it",
       author: "Epictetus" }
   ]);
-
-  const [registerEmail, setRegisterEmail] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
-  const [user, setUser] = useState({});
 
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
