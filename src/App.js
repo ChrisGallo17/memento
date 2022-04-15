@@ -10,6 +10,7 @@ import { auth } from './utils/firebase'
 import { useLocation, Routes, Route } from 'react-router-dom'
 import Login from './components/Login';
 import Register from './components/Register';
+import Home from './components/Home';
 
 function App() {
   const [modalShow, setModalShow] = useState(false);
@@ -70,7 +71,7 @@ function App() {
       />
 
       <Routes>
-        <Route path="/" /> 
+        <Route path="/" element={<Home />} /> 
         <Route path="feed" element={<Feed quotes={quotes}/>} />
         <Route path="login" element={
           <Login login={()=>login()} setEmail={setEmail} setPassword={setPassword} user={user}/>
