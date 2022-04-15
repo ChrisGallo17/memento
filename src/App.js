@@ -63,6 +63,7 @@ function App() {
   return (
     <div className="App">
       <NavBar />
+      <Appbar login={login} logout={logout()} register={register} user={user}/>
       <Feed quotes={quotes}/>
       {/* <Fab className='FixedButton' color="primary" onClick={() => setShowModal(true)}>
         <FaLightbulb style={{'height': '1.5rem'}} />
