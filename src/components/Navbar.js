@@ -1,7 +1,8 @@
 import { Nav, Navbar, Container } from "react-bootstrap";
 import logo from '../img/logo-white.png'
+import AuthButton from "./AuthButton";
 
-export default function NavBar () {
+export default function NavBar ({login, logout, register, user}) {
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
@@ -21,6 +22,7 @@ export default function NavBar () {
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>
+      <AuthButton login={()=>login()} logout={()=>logout()} register={()=>register()} user={user} />
       </Container>
     </Navbar>
   )

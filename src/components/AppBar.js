@@ -1,4 +1,4 @@
-import { AppBar, Container, Toolbar, Typography, Box, IconButton, Button, Tooltip, Avatar, Menu, MenuItem } from "@mui/material";
+import { AppBar, Container, Toolbar, Box, IconButton, Button, Tooltip, Avatar, Menu, MenuItem } from "@mui/material";
 import { useState } from "react";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import logo from '../img/logo-white.png';
@@ -9,18 +9,10 @@ const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export default function Appbar ({ login, logout, register, user}) {
-  const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
@@ -61,49 +53,20 @@ export default function Appbar ({ login, logout, register, user}) {
               {pages.map((page) => (
                 <Button
                   key={page}
-                  onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: 'white', display: 'block' }}
                 >
                   {page}
                 </Button>
               ))}
             </Box>
-
-            {/* <AuthButton login={login} logout={logout} register={register} user={user} /> */}
-
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <AccountCircle fontSize="large" />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: '45px' }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                <MenuItem key='Profile' onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">Profile</Typography>
-                </MenuItem>
-                <MenuItem key='Account' onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">Account</Typography>
-                </MenuItem>
-                <MenuItem key='Logout' onClick={handleLogout}>
-                  <Typography textAlign="center">Logout</Typography>
-                </MenuItem>
-              </Menu>
-            </Box>
+            <AuthButton 
+              handleOpenUserMenu={(e)=>handleOpenUserMenu(e)} 
+              handleCloseUserMenu={()=>handleCloseUserMenu()}
+              handleLogout={()=>handleLogout()}
+              anchorElUser={anchorElUser}
+              login={()=>login()} 
+              logout={()=>logout()} 
+              user={user} />
           </Toolbar>
         </Container>
       </AppBar>
