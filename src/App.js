@@ -8,7 +8,8 @@ import Appbar from './components/AppBar'
 import { FaLightbulb } from 'react-icons/fa'
 import MyVerticallyCenteredModal from './components/IdeaModal';
 import { auth } from './utils/firebase'
-import { Routes, Route } from 'react-router-dom'
+import { useLocation, Routes, Route } from 'react-router-dom'
+import LoginFields from './components/LoginFields';
 
 function App() {
   const [modalShow, setModalShow] = useState(false);
@@ -18,6 +19,8 @@ function App() {
 
   const [user, setUser] = useState({});
 
+  let location = useLocation();
+  
   const [quotes, setQuotes] = useState([
     { quote: "The quality of your life depends on the quality of your thoughts.",
       author: "Marcus Aurelius" },
@@ -61,26 +64,32 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar login={()=>login()} logout={()=>logout()} register={()=>register()} user={user}/>
+      <NavBar 
+        login={()=>login()} 
+        logout={()=>logout()} 
+        register={()=>register()} 
+        user={user} 
+        location={location}
+      />
 
-      <Routes location={state?.backgroundLocation || location}>
+      <Routes>
+        <Route path="/" /> 
+        <Route path="feed" element={<Feed quotes={quotes}/>} />
+        <Route path="login" element={
+          <LoginFields setEmail={setEmail} setPassword={setPassword} user={user}/>
+        }/>
+      </Routes>
+
+      {/* <Routes >
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="gallery" element={<Gallery />} />
           <Route path="/img/:id" element={<ImageView />} />
           <Route path="*" element={<NoMatch />} />
         </Route>
-      </Routes>
-
-      {/* <Switch>
-        <Route exactly component={Landing} pattern="/" />
-        <Route exactly component={Page1} pattern="/path1" />
-        <Route exactly component={Page2} pattern="/path2" />
-        <Route exactly component={Page3} pattern="/path3" />
-        <Route component={Page404} />
-      </Switch> */}
+      </Routes> */}
       
-      <Feed quotes={quotes}/>
+      {/* <Feed quotes={quotes}/> */}
       
       <Fab className='FixedButton' color="primary" onClick={() => setModalShow(true)}>
         <FaLightbulb style={{'height': '1.5rem'}} />
@@ -93,7 +102,9 @@ function App() {
         setQuotes={setQuotes}
       />
 
-      <Container className='mt-3'>
+      {/* <LoginFields setEmail={setEmail()} setPassword={setPassword()} user={user}/> */}
+
+      {/* <Container className='mt-3'>
         <TextField
           id="liEmail"
           label="Email"
@@ -108,9 +119,9 @@ function App() {
           onChange={(event) => { setPassword(event.target.value) }}
           label="Password"
         />
-
         <h4>{user?.email}</h4>
-      </Container>
+      </Container> */}
+
     </div>
   );
 }

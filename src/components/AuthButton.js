@@ -4,9 +4,11 @@ import { AccountCircle } from "@mui/icons-material";
 import React from "react";
 import { useState } from "react";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { useNavigate } from "react-router-dom";
 
 export default function AuthButton (props) {
   const [anchorElUser, setAnchorElUser] = useState(null);
+  let navigate = useNavigate();
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -72,7 +74,7 @@ export default function AuthButton (props) {
     // return <Button onClick={props.login}>Login</Button>;
     return (
       <Nav>
-        <Nav.Link onClick={props.login}>Sign In</Nav.Link>
+        <Nav.Link onClick={() => navigate("/login")}>Sign In</Nav.Link>
         <Nav.Link onClick={props.register}>Register</Nav.Link>
       </Nav>
     )
