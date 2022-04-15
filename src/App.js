@@ -12,10 +12,8 @@ import { auth } from './utils/firebase'
 function App() {
   const [modalShow, setModalShow] = useState(false);
   
-  const [registerEmail, setRegisterEmail] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const [user, setUser] = useState({});
 
@@ -34,8 +32,8 @@ function App() {
     try {
       const user = await createUserWithEmailAndPassword(
         auth,
-        registerEmail,
-        registerPassword
+        email,
+        password
       );
       console.log(user);
     } catch (error) {
@@ -47,8 +45,8 @@ function App() {
     try {
       const user = await signInWithEmailAndPassword(
         auth,
-        loginEmail,
-        loginPassword
+        email,
+        password
       );
       console.log(user);
     } catch (error) {
@@ -62,8 +60,8 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar />
-      <Appbar login={login} logout={logout()} register={register} user={user}/>
+      <NavBar login={()=>login()} logout={()=>logout()} register={()=>register()} user={user}/>
+      {/* <Appbar login={()=>login()} logout={()=>logout()} register={register} user={user}/> */}
       <Feed quotes={quotes}/>
       {/* <Fab className='FixedButton' color="primary" onClick={() => setShowModal(true)}>
         <FaLightbulb style={{'height': '1.5rem'}} />
@@ -77,24 +75,6 @@ function App() {
         quotes={quotes}
         setQuotes={setQuotes}
       />
-      
-      <Container className='mt-3'>
-        <TextField
-          id="suEmail"
-          label="Email"
-          placeholder="email@gmail.com"
-          className="m-2"
-          onChange={(event) => { setRegisterEmail(event.target.value) }}
-        />
-        <TextField
-          id="suPassword"
-          type="password"
-          className="m-2"
-          onChange={(event) => { setRegisterPassword(event.target.value) }}
-          label="Password"
-        />
-        <Button variant="contained" onClick={register} className="m-3">Register</Button>
-      </Container>
 
       <Container className='mt-3'>
         <TextField
@@ -102,17 +82,17 @@ function App() {
           label="Email"
           placeholder="email@gmail.com"
           className="m-2"
-          onChange={(event) => { setLoginEmail(event.target.value) }}
+          onChange={(event) => { setEmail(event.target.value) }}
           />
         <TextField
           id="liPassword"
           type="password"
           className="m-2"
-          onChange={(event) => { setLoginPassword(event.target.value) }}
+          onChange={(event) => { setPassword(event.target.value) }}
           label="Password"
         />
-        <Button variant="contained" onClick={login} className="m-3">Login</Button>
-        <Button variant="contained" onClick={logout} className="m-3">Logout</Button>
+        {/* <Button variant="contained" onClick={login} className="m-3">Login</Button>
+        <Button variant="contained" onClick={logout} className="m-3">Logout</Button> */}
         <h4>{user?.email}</h4>
       </Container>
     </div>
