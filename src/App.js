@@ -8,6 +8,7 @@ import Appbar from './components/AppBar'
 import { FaLightbulb } from 'react-icons/fa'
 import MyVerticallyCenteredModal from './components/IdeaModal';
 import { auth } from './utils/firebase'
+import { Routes, Route } from 'react-router-dom'
 
 function App() {
   const [modalShow, setModalShow] = useState(false);
@@ -61,14 +62,30 @@ function App() {
   return (
     <div className="App">
       <NavBar login={()=>login()} logout={()=>logout()} register={()=>register()} user={user}/>
-      {/* <Appbar login={()=>login()} logout={()=>logout()} register={register} user={user}/> */}
+
+      <Routes location={state?.backgroundLocation || location}>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="gallery" element={<Gallery />} />
+          <Route path="/img/:id" element={<ImageView />} />
+          <Route path="*" element={<NoMatch />} />
+        </Route>
+      </Routes>
+
+      {/* <Switch>
+        <Route exactly component={Landing} pattern="/" />
+        <Route exactly component={Page1} pattern="/path1" />
+        <Route exactly component={Page2} pattern="/path2" />
+        <Route exactly component={Page3} pattern="/path3" />
+        <Route component={Page404} />
+      </Switch> */}
+      
       <Feed quotes={quotes}/>
-      {/* <Fab className='FixedButton' color="primary" onClick={() => setShowModal(true)}>
-        <FaLightbulb style={{'height': '1.5rem'}} />
-      </Fab> */}
+      
       <Fab className='FixedButton' color="primary" onClick={() => setModalShow(true)}>
         <FaLightbulb style={{'height': '1.5rem'}} />
       </Fab>
+
       <MyVerticallyCenteredModal
         show={modalShow}
         onHide={() => setModalShow(false)}
@@ -91,8 +108,7 @@ function App() {
           onChange={(event) => { setPassword(event.target.value) }}
           label="Password"
         />
-        {/* <Button variant="contained" onClick={login} className="m-3">Login</Button>
-        <Button variant="contained" onClick={logout} className="m-3">Logout</Button> */}
+
         <h4>{user?.email}</h4>
       </Container>
     </div>
