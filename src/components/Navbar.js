@@ -24,11 +24,6 @@ export default function NavBar ({login, logout, register, user, location}) {
                 Feed
               </Link>
             </Nav.Link>
-            <Nav.Link to="login">
-              <Link to="login" style={{ color: 'inherit', textDecoration: 'none' }}>
-                Login
-              </Link>
-            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
 

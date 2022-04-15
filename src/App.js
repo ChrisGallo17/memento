@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { Fab, TextField, Container, Button,  } from '@mui/material';
+import { Fab } from '@mui/material';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 import './App.css';
 import Feed from './components/Feed';
 import NavBar from './components/Navbar'
-import Appbar from './components/AppBar'
 import { FaLightbulb } from 'react-icons/fa'
 import MyVerticallyCenteredModal from './components/IdeaModal';
 import { auth } from './utils/firebase'
@@ -13,14 +12,9 @@ import LoginFields from './components/LoginFields';
 
 function App() {
   const [modalShow, setModalShow] = useState(false);
-  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [user, setUser] = useState({});
-
-  let location = useLocation();
-  
   const [quotes, setQuotes] = useState([
     { quote: "The quality of your life depends on the quality of your thoughts.",
       author: "Marcus Aurelius" },
@@ -28,6 +22,8 @@ function App() {
       author: "Epictetus" }
   ]);
 
+  let location = useLocation();
+  
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
   });
@@ -76,7 +72,7 @@ function App() {
         <Route path="/" /> 
         <Route path="feed" element={<Feed quotes={quotes}/>} />
         <Route path="login" element={
-          <LoginFields setEmail={setEmail} setPassword={setPassword} user={user}/>
+          <LoginFields login={()=>login()} setEmail={setEmail} setPassword={setPassword} user={user}/>
         }/>
       </Routes>
 
