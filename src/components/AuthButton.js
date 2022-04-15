@@ -4,11 +4,10 @@ import { AccountCircle } from "@mui/icons-material";
 import React from "react";
 import { useState } from "react";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function AuthButton (props) {
   const [anchorElUser, setAnchorElUser] = useState(null);
-  let navigate = useNavigate();
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -79,7 +78,11 @@ export default function AuthButton (props) {
             Sign In
           </Link>
         </Nav.Link>
-        <Nav.Link onClick={props.register}>Register</Nav.Link>
+        <Nav.Link>
+          <Link to="register" style={{ color: 'inherit', textDecoration: 'none' }}>
+            Register
+          </Link>
+        </Nav.Link>
       </Nav>
     )
   }
