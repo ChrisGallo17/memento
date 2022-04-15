@@ -4,7 +4,7 @@ import { AccountCircle } from "@mui/icons-material";
 import React from "react";
 import { useState } from "react";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function AuthButton (props) {
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -74,7 +74,11 @@ export default function AuthButton (props) {
     // return <Button onClick={props.login}>Login</Button>;
     return (
       <Nav>
-        <Nav.Link onClick={() => navigate("/login")}>Sign In</Nav.Link>
+        <Nav.Link>
+          <Link to="login" style={{ color: 'inherit', textDecoration: 'none' }}>
+            Sign In
+          </Link>
+        </Nav.Link>
         <Nav.Link onClick={props.register}>Register</Nav.Link>
       </Nav>
     )
