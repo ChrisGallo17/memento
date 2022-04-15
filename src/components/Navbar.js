@@ -1,9 +1,9 @@
 import { Nav, Navbar, Container } from "react-bootstrap";
 import logo from '../img/logo-white.png'
 import AuthButton from "./AuthButton";
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
-export default function NavBar ({login, logout, register, user}) {
+export default function NavBar ({login, logout, register, user, location}) {
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
@@ -19,18 +19,26 @@ export default function NavBar ({login, logout, register, user}) {
         </Navbar.Brand>
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav>
-          <Nav.Link href="#feed">Feed</Nav.Link>
-          <Nav.Link eventKey={2} href="#login">Login</Nav.Link>
-        </Nav>
-      </Navbar.Collapse>
+            <Nav.Link>
+              <Link to="feed" style={{ color: 'inherit', textDecoration: 'none' }}>
+                Feed
+              </Link>
+            </Nav.Link>
+            <Nav.Link to="login">
+              <Link to="login" style={{ color: 'inherit', textDecoration: 'none' }}>
+                Login
+              </Link>
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
 
-      <AuthButton 
-        login={()=>login()} 
-        logout={()=>logout()} 
-        register={()=>register()} 
-        user={user} 
-      />
-
+        <AuthButton 
+          login={()=>login()} 
+          logout={()=>logout()} 
+          register={()=>register()} 
+          user={user} 
+          location={location}
+        />
       </Container>
     </Navbar>
   )
