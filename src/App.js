@@ -8,7 +8,8 @@ import { FaLightbulb } from 'react-icons/fa'
 import MyVerticallyCenteredModal from './components/IdeaModal';
 import { auth } from './utils/firebase'
 import { useLocation, Routes, Route } from 'react-router-dom'
-import LoginFields from './components/LoginFields';
+import Login from './components/Login';
+import Register from './components/Register';
 
 function App() {
   const [modalShow, setModalShow] = useState(false);
@@ -72,7 +73,10 @@ function App() {
         <Route path="/" /> 
         <Route path="feed" element={<Feed quotes={quotes}/>} />
         <Route path="login" element={
-          <LoginFields login={()=>login()} setEmail={setEmail} setPassword={setPassword} user={user}/>
+          <Login login={()=>login()} setEmail={setEmail} setPassword={setPassword} user={user}/>
+        }/>
+        <Route path="register" element={
+          <Register register={()=>register()} setEmail={setEmail} setPassword={setPassword} user={user}/>
         }/>
       </Routes>
 

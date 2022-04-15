@@ -1,10 +1,10 @@
 import { Button, Box, Avatar, Typography, TextField, Grid, Link, CssBaseline } from "@mui/material"
 import { LockOutlined } from "@mui/icons-material";
-import { Form, Container } from "react-bootstrap"
+import { Container } from "react-bootstrap"
 import { useNavigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material";
 
-export default function LoginFields ({ login, setEmail, setPassword, user }) {
+export default function Login ({ login, setEmail, setPassword, user }) {
   let navigate = useNavigate();
   const theme = createTheme();
 

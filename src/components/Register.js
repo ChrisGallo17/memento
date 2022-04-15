@@ -1,23 +1,80 @@
-import { Container, TextField } from "@mui/material"
+import { Button, Box, Avatar, Typography, TextField, Grid, Link, CssBaseline } from "@mui/material"
+import { PersonAddAlt1Outlined } from "@mui/icons-material";
+import { Container } from "react-bootstrap"
+import { useNavigate } from "react-router-dom";
+import { createTheme, ThemeProvider } from "@mui/material";
 
-export default function Register ({ setEmail, setPassword, user }) {
+export default function Register ({ register, setEmail, setPassword, user }) {
+  let navigate = useNavigate();
+  const theme = createTheme();
+
+  const onSubmit = (event) => {
+    // Check to see if account already exists with that email
+    event.preventDefault();
+    register()
+    navigate("../feed")
+  };
+  
   return (
-    <Container className='mt-3'>
-      <TextField
-        id="liEmail"
-        label="Email"
-        placeholder="email@gmail.com"
-        className="m-2"
-        onChange={(event) => { setEmail(event.target.value) }}
-        />
-      <TextField
-        id="liPassword"
-        type="password"
-        className="m-2"
-        onChange={(event) => { setPassword(event.target.value) }}
-        label="Password"
-      />
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <PersonAddAlt1Outlined />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Register
+          </Typography>
+          <Box component="form" onSubmit={onSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              onChange={(event) => { setEmail(event.target.value) }}
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              onChange={(event) => { setPassword(event.target.value) }}
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign Up
+            </Button>
+            <Grid container>
+              <Grid item>
+                <Link href="../login" variant="body2">
+                  {"Already have an account? Sign In"}
+                </Link>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+      </Container>
       <h4>{user?.email}</h4>
-    </Container>
+    </ThemeProvider>
   )
 }
