@@ -4,7 +4,7 @@ import { useState } from "react";
 import { db } from "../utils/firebase";
 
 export default function MyVerticallyCenteredModal(props) {
-  const { quotes, setQuotes } = props;
+  // const { quotes, setQuotes } = props;
   const [quoteValue, setQuoteValue] = useState()
   const [authorValue, setAuthorValue] = useState()
 
@@ -23,7 +23,7 @@ export default function MyVerticallyCenteredModal(props) {
         author : authorValue,
       }).catch(alert);
   
-      setQuotes([...quotes, {quote: quoteValue, author: authorValue}])
+      // setQuotes([...quotes, {quote: quoteValue, author: authorValue}])
       setQuoteValue('')
       setAuthorValue('')
     }

@@ -85,7 +85,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} /> 
-        <Route path="feed" element={<Feed quotes={quotes}/>} />
+        <Route path="feed" element={<Feed quotes={quotes} user={user}/>} />
         <Route path="login" element={
           <Login login={()=>login()} setEmail={setEmail} setPassword={setPassword} user={user}/>
         }/>
