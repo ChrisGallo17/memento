@@ -85,7 +85,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} /> 
-        <Route path="feed" element={<Feed quotes={quotes} user={user}/>} />
+        <Route path="feed" element={<Feed quotes={quotes} user={user} setModalShow={setModalShow}/>} />
         <Route path="login" element={
           <Login login={()=>login()} setEmail={setEmail} setPassword={setPassword} user={user}/>
         }/>
@@ -94,15 +94,15 @@ function App() {
         }/>
       </Routes>
       
-      <Fab className='FixedButton' color="primary" onClick={() => setModalShow(true)}>
+      {/* <Fab className='FixedButton' color="primary" onClick={() => setModalShow(true)}>
         <FaLightbulb style={{'height': '1.5rem'}} />
-      </Fab>
+      </Fab> */}
 
       <MyVerticallyCenteredModal
         show={modalShow}
         onHide={() => setModalShow(false)}
         quotes={quotes}
-        setQuotes={setQuotes}
+        // setQuotes={setQuotes}
         user={user}
       />
     </div>

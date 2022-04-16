@@ -1,10 +1,12 @@
 import { Container } from "react-bootstrap";
 import { useState } from "react";
 import { db } from "../utils/firebase";
+import { Fab } from "@mui/material";
+import { FaLightbulb } from 'react-icons/fa'
 import Quote from "./Quote";
 
 export default function Feed (props) {
-  const { user } = props;
+  const { user, setModalShow } = props;
 
   const [feed, setFeed] = useState(null)
   
@@ -40,6 +42,9 @@ export default function Feed (props) {
             {feed && feed.map((quote) =>
               <Quote quote={quote.quote} author={quote.author} key={quote.key}/>
             )}
+            <Fab className='FixedButton' color="primary" onClick={() => setModalShow(true)}>
+              <FaLightbulb style={{'height': '1.5rem'}} />
+            </Fab>
           </Container>
         )
       }
@@ -47,6 +52,9 @@ export default function Feed (props) {
     return (
       <Container className='mt-4'>
         Create a quote
+        <Fab className='FixedButton' color="primary" onClick={() => setModalShow(true)}>
+          <FaLightbulb style={{'height': '1.5rem'}} />
+        </Fab>
       </Container>
     )
   }
