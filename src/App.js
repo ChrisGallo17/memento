@@ -1,10 +1,8 @@
 import { useState } from 'react';
-import { Fab } from '@mui/material';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 import './App.css';
 import Feed from './components/Feed';
 import NavBar from './components/Navbar'
-import { FaLightbulb } from 'react-icons/fa'
 import MyVerticallyCenteredModal from './components/IdeaModal';
 import { auth } from './utils/firebase'
 import { useLocation, Routes, Route } from 'react-router-dom'
@@ -93,10 +91,6 @@ function App() {
           <Register register={()=>register()} setEmail={setEmail} setPassword={setPassword} user={user}/>
         }/>
       </Routes>
-      
-      {/* <Fab className='FixedButton' color="primary" onClick={() => setModalShow(true)}>
-        <FaLightbulb style={{'height': '1.5rem'}} />
-      </Fab> */}
 
       <MyVerticallyCenteredModal
         show={modalShow}

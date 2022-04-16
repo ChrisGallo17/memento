@@ -35,6 +35,7 @@ export default function AuthButton (props) {
   if (props.user) {
     return (
       <ThemeProvider theme={darkTheme}> 
+      <div className="nav-link justify-content-right" style={{color: "#dee2e6"}}>{props.user.email}</div>
       <Box sx={{ flexGrow: 0 }}>
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
           <AccountCircle fontSize="large" />
