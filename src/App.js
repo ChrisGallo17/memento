@@ -11,6 +11,7 @@ import { useLocation, Routes, Route } from 'react-router-dom'
 import Login from './components/Login';
 import Register from './components/Register';
 import Home from './components/Home';
+import { db } from './utils/firebase';
 
 function App() {
   const [modalShow, setModalShow] = useState(false);
@@ -37,7 +38,19 @@ function App() {
         email,
         password
       );
+      
       console.log(user);
+
+      if (user.user.uid){
+        debugger
+        // Add user to realtime db
+        db.ref("users/" + user.user.uid ).set({
+          email : user.user.email
+        }).catch(alert);
+        console.log("Added " + user.user.email + " to DB")
+      } else {
+        console.log("ERROR: Failed to add user to DB")
+      }
     } catch (error) {
       console.log(error.message);
     }
@@ -80,17 +93,6 @@ function App() {
           <Register register={()=>register()} setEmail={setEmail} setPassword={setPassword} user={user}/>
         }/>
       </Routes>
-
-      {/* <Routes >
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="gallery" element={<Gallery />} />
-          <Route path="/img/:id" element={<ImageView />} />
-          <Route path="*" element={<NoMatch />} />
-        </Route>
-      </Routes> */}
-      
-      {/* <Feed quotes={quotes}/> */}
       
       <Fab className='FixedButton' color="primary" onClick={() => setModalShow(true)}>
         <FaLightbulb style={{'height': '1.5rem'}} />
@@ -101,28 +103,8 @@ function App() {
         onHide={() => setModalShow(false)}
         quotes={quotes}
         setQuotes={setQuotes}
+        user={user}
       />
-
-      {/* <LoginFields setEmail={setEmail()} setPassword={setPassword()} user={user}/> */}
-
-      {/* <Container className='mt-3'>
-        <TextField
-          id="liEmail"
-          label="Email"
-          placeholder="email@gmail.com"
-          className="m-2"
-          onChange={(event) => { setEmail(event.target.value) }}
-          />
-        <TextField
-          id="liPassword"
-          type="password"
-          className="m-2"
-          onChange={(event) => { setPassword(event.target.value) }}
-          label="Password"
-        />
-        <h4>{user?.email}</h4>
-      </Container> */}
-
     </div>
   );
 }

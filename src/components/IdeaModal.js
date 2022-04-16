@@ -14,17 +14,22 @@ export default function MyVerticallyCenteredModal(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    var UserID = 'Chris';
-    var QuoteKey = generateRandomString()
-
-    db.ref(UserID + "/quotes/" + QuoteKey ).set({
-      quote : quoteValue,
-      author : authorValue,
-    }).catch(alert);
-
-    setQuotes([...quotes, {quote: quoteValue, author: authorValue}])
-    setQuoteValue('')
-    setAuthorValue('')
+    if (props.user) {
+      var UserID = props.user.uid;
+      var QuoteKey = generateRandomString()
+      
+      db.ref("users/" + UserID + "/quotes/" + QuoteKey ).set({
+        quote : quoteValue,
+        author : authorValue,
+      }).catch(alert);
+  
+      setQuotes([...quotes, {quote: quoteValue, author: authorValue}])
+      setQuoteValue('')
+      setAuthorValue('')
+    }
+    else {
+      alert("You must be signed in")
+    }
   };
   
   return (
