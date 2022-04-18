@@ -21,6 +21,7 @@ export default function MyVerticallyCenteredModal(props) {
       db.ref("users/" + UserID + "/quotes/" + QuoteKey ).set({
         quote : quoteValue,
         author : authorValue,
+        key : QuoteKey
       }).catch(alert);
   
       // setQuotes([...quotes, {quote: quoteValue, author: authorValue}])
@@ -64,6 +65,7 @@ export default function MyVerticallyCenteredModal(props) {
           id="Author"
           label="Author"
           placeholder="Marcus Aurelius"
+          fullWidth
           value={authorValue}
           onChange={e => setAuthorValue(e.target.value)}
         />

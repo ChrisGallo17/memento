@@ -7,7 +7,7 @@ import Quote from "./Quote";
 
 export default function Feed (props) {
   const { user, setModalShow } = props;
-
+  
   const [feed, setFeed] = useState(null)
   
   const pullFeed = () => {
@@ -40,8 +40,9 @@ export default function Feed (props) {
         return(
           <Container className='mt-4'>
             {feed && feed.map((quote) =>
-              <Quote quote={quote.quote} author={quote.author} key={quote.key}/>
+              <Quote quote={quote} user={user}/>
             )}
+
             <Fab className='FixedButton' color="primary" onClick={() => setModalShow(true)}>
               <FaLightbulb style={{'height': '1.5rem'}} />
             </Fab>

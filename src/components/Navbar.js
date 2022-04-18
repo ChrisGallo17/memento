@@ -26,8 +26,6 @@ export default function NavBar ({login, logout, register, user, location}) {
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
-
-        {/* {user.email && <div className="nav-link justify-content-right" style={{color: "#dee2e6"}}>{user.email}</div>} */}
         
         <AuthButton 
           login={()=>login()} 
