@@ -4,9 +4,11 @@ import { db } from "../utils/firebase";
 import { Fab } from "@mui/material";
 import { FaLightbulb } from 'react-icons/fa'
 import Quote from "./Quote";
+import { useNavigate } from "react-router";
 
 export default function Feed (props) {
   const { user, setModalShow } = props;
+  let navigate = useNavigate();
   
   const [feed, setFeed] = useState(null)
   
@@ -33,6 +35,7 @@ export default function Feed (props) {
 
   if (!user) { // User is not logged in
     // Prompt user to sign in or register
+    navigate("../login")
     return <div>Sign in or Register</div>
   } else {
     if (feed) {
