@@ -1,5 +1,5 @@
 import { Card, Modal } from "react-bootstrap"
-import { Edit, Delete } from "@mui/icons-material";
+import { MoreVert, Delete } from "@mui/icons-material";
 import { IconButton, Button, Grid, TextField, Stack } from "@mui/material";
 import { useState } from "react";
 import { db } from "../utils/firebase";
@@ -45,7 +45,7 @@ export default function Quote (props) {
               </div>
             </Grid>
             <Grid item >
-              <IconButton variant="text" size="small" className="p-0" onClick={handleShow}><Edit /></IconButton>
+              <IconButton variant="text" size="small" className="p-0" onClick={handleShow}><MoreVert /></IconButton>
             </Grid>
         </Grid>
         </Card.Footer>

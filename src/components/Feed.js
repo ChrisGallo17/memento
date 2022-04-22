@@ -5,6 +5,7 @@ import { Fab } from "@mui/material";
 import { FaLightbulb } from 'react-icons/fa'
 import Quote from "./Quote";
 import { useNavigate } from "react-router";
+import QuoteV2 from "./QuoteV2";
 
 export default function Feed (props) {
   const { user, setModalShow } = props;
@@ -42,6 +43,7 @@ export default function Feed (props) {
       if (feed.length > 0) {
         return(
           <Container className='mt-4'>
+            <QuoteV2 />
             {feed && feed.map((quote) =>
               <Quote quote={quote} user={user}/>
             )}

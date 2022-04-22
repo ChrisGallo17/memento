@@ -17,11 +17,20 @@ export default function MyVerticallyCenteredModal(props) {
     if (props.user) {
       var UserID = props.user.uid;
       var QuoteKey = generateRandomString()
-      
+      const d = new Date()
       db.ref("users/" + UserID + "/quotes/" + QuoteKey ).set({
         quote : quoteValue,
         author : authorValue,
-        key : QuoteKey
+        key : QuoteKey,
+        date : {
+          month: d.getMonth() + 1,
+          day: d.getDate(),
+          year: d.getFullYear(),
+          hour: d.getHours(),
+          minute: d.getMinutes(),
+          second: d.getSeconds(),
+          date: d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear()
+        } 
       }).catch(alert);
   
       // setQuotes([...quotes, {quote: quoteValue, author: authorValue}])
