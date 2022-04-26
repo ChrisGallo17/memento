@@ -6,7 +6,12 @@ import { useState } from "react";
 export default function QuoteV2 () {
   const [activeStep, setActiveStep] = useState(0);
   const [heart, setHeart] = useState(false);
-  const numberOfQuotes = 6;
+  const quotes = {
+    0 : { quote : "This is the first quote in the list" },
+    1 : { quote : "The seccond quote has key = 2" },
+    2 : { quote : "3rd time's a charm" }
+  }
+  const numberOfQuotes = Object.keys(quotes).length;
 
   const handleNext = () => {
     if (activeStep + 1 === numberOfQuotes) {
@@ -43,7 +48,7 @@ export default function QuoteV2 () {
             <ArrowBackIos color="primary"/>
           </IconButton> 
           <Card.Text align="center">
-            "This is where the quote would be"
+            {quotes[activeStep].quote}
           </Card.Text>
           <IconButton onClick={handleNext}>
             <ArrowForwardIos color="primary"/>
