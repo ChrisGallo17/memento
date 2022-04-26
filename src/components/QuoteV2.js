@@ -1,12 +1,11 @@
 import { Card, Row, Col } from "react-bootstrap"
-import { MoreVert, ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
+import { MoreVert, ArrowBackIos, ArrowForwardIos, FavoriteBorder, AddCircleOutline, Favorite } from "@mui/icons-material";
 import { IconButton, MobileStepper, Button, Stack } from "@mui/material";
 import { useState } from "react";
-import { useTheme } from "@mui/material/styles";
 
 export default function QuoteV2 () {
-  const theme = useTheme
   const [activeStep, setActiveStep] = useState(0);
+  const [heart, setHeart] = useState(false);
   const numberOfQuotes = 6;
 
   const handleNext = () => {
@@ -49,7 +48,6 @@ export default function QuoteV2 () {
           <IconButton onClick={handleNext}>
             <ArrowForwardIos color="primary"/>
           </IconButton> 
-
         </Stack>
         
         <MobileStepper
@@ -60,26 +58,29 @@ export default function QuoteV2 () {
           activeStep={activeStep}
           sx={{ flexGrow: 1 }}
           style={{justifyContent: "center"}}
-          // nextButton={
-          //   <Button size="small" onClick={handleNext} disabled={activeStep === 5}>
-          //     {theme.direction === 'rtl' ? (
-          //       <KeyboardArrowLeft />
-          //     ) : (
-          //       <KeyboardArrowRight />
-          //     )}
-          //   </Button>
-          // }
-          // backButton={
-          //   <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-          //     {theme.direction === 'rtl' ? (
-          //       <KeyboardArrowRight />
-          //     ) : (
-          //       <KeyboardArrowLeft />
-          //     )}
-          //   </Button>
-          // }
         />
       </Card.Body>
+
+      <Card.Footer className="p-0 ps-2 pe-3">
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+          className="p-0"
+          spacing={2}>
+            <div>
+              <IconButton size="small" onClick={() => setHeart(!heart)}>
+                { heart ? <Favorite color="error" /> : <FavoriteBorder />}
+              </IconButton> 
+              <IconButton >
+                <AddCircleOutline />
+              </IconButton> 
+            </div>
+            <div>
+              Username or April 26
+            </div>
+        </Stack>
+      </Card.Footer>
     </Card>
   )
 }
