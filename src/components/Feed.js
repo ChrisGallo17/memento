@@ -43,14 +43,14 @@ export default function Feed (props) {
       if (feed.length > 0) {
         return(
           <Container className='mt-4'>
-            <QuoteV2 />
+            <QuoteV2 setModalShow={setModalShow}/>
             {feed && feed.map((quote) =>
               <Quote quote={quote} user={user}/>
             )}
 
-            <Fab className='FixedButton' color="primary" onClick={() => setModalShow(true)}>
+            {/* <Fab className='FixedButton' color="primary" onClick={() => setModalShow(true)}>
               <FaLightbulb style={{'height': '1.5rem'}} />
-            </Fab>
+            </Fab> */}
           </Container>
         )
       }

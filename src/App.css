@@ -8,6 +8,10 @@
   bottom:   2rem;
 }
 
+.GreyIcon {
+  color: rgba(0, 0, 0, 0.54)
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
